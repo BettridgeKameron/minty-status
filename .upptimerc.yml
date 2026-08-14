@@ -57,13 +57,13 @@ skipTopicsUpdate: true
 skipHomepageUpdate: true
 
 status-website:
-  baseUrl: /minty-status
+  cname: status.mintydev.gay
   theme: night
   name: Mintydev status
   introTitle: Mintydev service status
   introMessage: Current uptime and response times for public Mintydev services.
   navbar:
     - title: Status
-      href: /minty-status
+      href: /
     - title: GitHub
       href: https://github.com/BettridgeKameron/minty-status
