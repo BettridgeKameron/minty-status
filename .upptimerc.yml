@@ -1,0 +1,69 @@
+owner: BettridgeKameron
+repo: minty-status
+user-agent: minty-status
+secrets: []
+
+sites:
+  - name: Blog
+    url: https://blog.mintydev.gay
+    expectedStatusCodes: [200]
+    maxResponseTime: 5000
+  - name: Git
+    url: https://git.mintydev.gay/api/healthz
+    expectedStatusCodes: [200]
+    maxResponseTime: 5000
+  - name: CI
+    url: https://ci.mintydev.gay/healthz
+    expectedStatusCodes: [204]
+    maxResponseTime: 5000
+  - name: Identity
+    url: https://auth.mintydev.gay/realms/mintydev/.well-known/openid-configuration
+    expectedStatusCodes: [200]
+    maxResponseTime: 5000
+  - name: Webmail
+    url: https://webmail.mintydev.gay
+    expectedStatusCodes: [200, 302]
+    maxResponseTime: 5000
+  - name: Mail administration
+    url: https://mail.mintydev.gay
+    expectedStatusCodes: [200, 302]
+    maxResponseTime: 5000
+  - name: Mail submission
+    check: tcp-ping
+    url: mail.mintydev.gay
+    port: 587
+  - name: Mail inbox
+    check: tcp-ping
+    url: mail.mintydev.gay
+    port: 993
+  - name: Metrics
+    url: https://prometheus.mintydev.gay
+    expectedStatusCodes: [200, 302]
+    maxResponseTime: 5000
+  - name: Logs and dashboards
+    url: https://grafana.mintydev.gay
+    expectedStatusCodes: [200, 302]
+    maxResponseTime: 5000
+  - name: Alerts
+    url: https://alertmanager.mintydev.gay
+    expectedStatusCodes: [200, 302]
+    maxResponseTime: 5000
+
+assignees:
+  - BettridgeKameron
+skipDeleteIssues: true
+skipDescriptionUpdate: true
+skipTopicsUpdate: true
+skipHomepageUpdate: true
+
+status-website:
+  baseUrl: /minty-status
+  theme: night
+  name: Mintydev status
+  introTitle: Mintydev service status
+  introMessage: Current uptime and response times for public Mintydev services.
+  navbar:
+    - title: Status
+      href: /minty-status
+    - title: GitHub
+      href: https://github.com/BettridgeKameron/minty-status
