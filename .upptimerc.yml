@@ -57,7 +57,6 @@ skipTopicsUpdate: true
 skipHomepageUpdate: true
 
 status-website:
-  cname: status.mintydev.gay
   theme: night
   name: Mintydev status
   introTitle: Mintydev service status
