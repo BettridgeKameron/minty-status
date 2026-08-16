@@ -1,0 +1,71 @@
+name: Off-box status
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - .github/workflows/status.yml
+      - checks.json
+      - scripts/**
+      - site/**
+  push:
+    branches: [master]
+    paths:
+      - .github/workflows/status.yml
+      - checks.json
+      - scripts/**
+      - site/**
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    outputs:
+      healthy: ${{ steps.probe.outputs.healthy }}
+    steps:
+      - name: Check out the status source
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Check the public services
+        id: probe
+        run: |
+          python3 -m unittest discover -s tests
+          python3 scripts/check.py --output site/status.json --health-file /tmp/healthy
+          printf 'healthy=%s\n' "$(cat /tmp/healthy)" >> "$GITHUB_OUTPUT"
+      - name: Configure GitHub Pages
+        if: ${{ github.event_name != 'pull_request' }}
+        uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5
+      - name: Upload the status page
+        if: ${{ github.event_name != 'pull_request' }}
+        uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3
+        with:
+          path: site
+
+  deploy:
+    needs: check
+    if: ${{ github.event_name != 'pull_request' }}
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy the status page
+        id: deployment
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4
+
+  report-outage:
+    needs: [check, deploy]
+    if: ${{ always() && needs.check.result == 'success' && needs.deploy.result == 'success' && needs.check.outputs.healthy != 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Mark the run as unhealthy
+        run: exit 1

@@ -1,0 +1,51 @@
+[
+  {
+    "name": "Blog",
+    "url": "https://blog.mintydev.gay/",
+    "statuses": [200]
+  },
+  {
+    "name": "Git",
+    "url": "https://git.mintydev.gay/",
+    "statuses": [200],
+    "contains": "<title>Mintydev Git</title>"
+  },
+  {
+    "name": "CI",
+    "url": "https://ci.mintydev.gay/",
+    "statuses": [200],
+    "contains": "<title>Woodpecker</title>"
+  },
+  {
+    "name": "Identity",
+    "url": "https://auth.mintydev.gay/realms/mintydev/.well-known/openid-configuration",
+    "statuses": [200],
+    "contains": "https://auth.mintydev.gay/realms/mintydev"
+  },
+  {
+    "name": "Webmail",
+    "url": "https://webmail.mintydev.gay/",
+    "statuses": [200],
+    "contains": "Sign in to Mintydev"
+  },
+  {
+    "name": "Metrics dashboard",
+    "url": "https://grafana.mintydev.gay/",
+    "statuses": [200],
+    "contains": "Sign in to Mintydev"
+  },
+  {
+    "name": "Primary status",
+    "url": "https://status.mintydev.gay/api/v1/endpoints/statuses",
+    "statuses": [200],
+    "contains": "Public edge",
+    "gatus_freshness_endpoint": "Public edge",
+    "gatus_freshness_seconds": 180
+  },
+  {
+    "name": "Mail transport policy",
+    "url": "https://mta-sts.mintydev.gay/.well-known/mta-sts.txt",
+    "statuses": [200],
+    "contains": "version: STSv1"
+  }
+]
