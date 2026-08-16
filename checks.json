@@ -1,0 +1,46 @@
+[
+  {
+    "name": "Blog",
+    "url": "https://blog.mintydev.gay/",
+    "statuses": [200]
+  },
+  {
+    "name": "Git",
+    "url": "https://git.mintydev.gay/api/healthz",
+    "statuses": [200],
+    "contains": "\"status\": \"pass\""
+  },
+  {
+    "name": "CI",
+    "url": "https://ci.mintydev.gay/healthz",
+    "statuses": [204]
+  },
+  {
+    "name": "Identity",
+    "url": "https://auth.mintydev.gay/realms/mintydev/.well-known/openid-configuration",
+    "statuses": [200],
+    "contains": "https://auth.mintydev.gay/realms/mintydev"
+  },
+  {
+    "name": "Webmail",
+    "url": "https://webmail.mintydev.gay/static.php/skins/elastic/images/logo.svg",
+    "statuses": [200]
+  },
+  {
+    "name": "Metrics dashboard",
+    "url": "https://grafana.mintydev.gay/api/health",
+    "statuses": [200],
+    "contains": "\"database\": \"ok\""
+  },
+  {
+    "name": "Primary status",
+    "url": "https://status.mintydev.gay/",
+    "statuses": [200]
+  },
+  {
+    "name": "Mail transport policy",
+    "url": "https://mta-sts.mintydev.gay/.well-known/mta-sts.txt",
+    "statuses": [200],
+    "contains": "version: STSv1"
+  }
+]

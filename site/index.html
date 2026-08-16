@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="dark">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'">
+    <title>Mintydev fallback status</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <main>
+      <header>
+        <div>
+          <p class="eyebrow">Mintydev</p>
+          <h1>Fallback status</h1>
+          <p class="intro">Checks run from GitHub every five minutes.</p>
+        </div>
+        <div id="overall" class="overall loading">Loading status</div>
+      </header>
+
+      <div class="meta">
+        <span id="checked">Waiting for the latest check</span>
+        <a href="https://status.mintydev.gay/">Open the live status page</a>
+      </div>
+
+      <section id="services" class="services" aria-live="polite"></section>
+      <noscript>This page needs JavaScript to load the latest status snapshot.</noscript>
+    </main>
+  </body>
+</html>
