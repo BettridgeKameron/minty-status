@@ -16,6 +16,26 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 
 
+def gatus_is_fresh(body: str, maximum_age: int, endpoint_name: str) -> bool:
+    endpoints = json.loads(body)
+    if not isinstance(endpoints, list) or not endpoints:
+        return False
+    now = datetime.now(timezone.utc)
+    selected = [item for item in endpoints if item.get("name") == endpoint_name]
+    if len(selected) != 1:
+        return False
+    for endpoint in selected:
+        timestamps = []
+        for result in endpoint.get("results", []):
+            value = result.get("timestamp")
+            if not value:
+                continue
+            timestamps.append(datetime.fromisoformat(value.replace("Z", "+00:00")))
+        if not timestamps or (now - max(timestamps)).total_seconds() > maximum_age:
+            return False
+    return True
+
+
 def check_service(service: dict, context: ssl.SSLContext) -> dict:
     started = time.monotonic()
     status = None
@@ -32,6 +52,12 @@ def check_service(service: dict, context: ssl.SSLContext) -> dict:
         healthy = status in service["statuses"] and (
             not service.get("contains") or service["contains"] in body
         )
+        if healthy and service.get("gatus_freshness_seconds"):
+            healthy = gatus_is_fresh(
+                body,
+                service["gatus_freshness_seconds"],
+                service["gatus_freshness_endpoint"],
+            )
         if not healthy:
             error = "Unexpected response"
     except urllib.error.HTTPError as exc:

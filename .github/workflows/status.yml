@@ -38,6 +38,7 @@ jobs:
       - name: Check the public services
         id: probe
         run: |
+          python3 -m unittest discover -s tests
           python3 scripts/check.py --output site/status.json --health-file /tmp/healthy
           printf 'healthy=%s\n' "$(cat /tmp/healthy)" >> "$GITHUB_OUTPUT"
       - name: Configure GitHub Pages

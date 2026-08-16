@@ -6,14 +6,15 @@
   },
   {
     "name": "Git",
-    "url": "https://git.mintydev.gay/api/healthz",
+    "url": "https://git.mintydev.gay/",
     "statuses": [200],
-    "contains": "\"status\": \"pass\""
+    "contains": "<title>Mintydev Git</title>"
   },
   {
     "name": "CI",
-    "url": "https://ci.mintydev.gay/healthz",
-    "statuses": [204]
+    "url": "https://ci.mintydev.gay/",
+    "statuses": [200],
+    "contains": "<title>Woodpecker</title>"
   },
   {
     "name": "Identity",
@@ -23,19 +24,23 @@
   },
   {
     "name": "Webmail",
-    "url": "https://webmail.mintydev.gay/static.php/skins/elastic/images/logo.svg",
-    "statuses": [200]
+    "url": "https://webmail.mintydev.gay/",
+    "statuses": [200],
+    "contains": "Sign in to Mintydev"
   },
   {
     "name": "Metrics dashboard",
-    "url": "https://grafana.mintydev.gay/api/health",
+    "url": "https://grafana.mintydev.gay/",
     "statuses": [200],
-    "contains": "\"database\": \"ok\""
+    "contains": "Sign in to Mintydev"
   },
   {
     "name": "Primary status",
-    "url": "https://status.mintydev.gay/",
-    "statuses": [200]
+    "url": "https://status.mintydev.gay/api/v1/endpoints/statuses",
+    "statuses": [200],
+    "contains": "Public edge",
+    "gatus_freshness_endpoint": "Public edge",
+    "gatus_freshness_seconds": 180
   },
   {
     "name": "Mail transport policy",
