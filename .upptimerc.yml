@@ -4,50 +4,10 @@ user-agent: minty-status
 secrets: []
 
 sites:
-  - name: Blog
-    url: https://blog.mintydev.gay
+  - name: Primary status API
+    url: https://status.mintydev.gay/api/v1/endpoints/statuses
     expectedStatusCodes: [200]
-    maxResponseTime: 5000
-  - name: Git
-    url: https://git.mintydev.gay/api/healthz
-    expectedStatusCodes: [200]
-    maxResponseTime: 5000
-  - name: CI
-    url: https://ci.mintydev.gay/healthz
-    expectedStatusCodes: [204]
-    maxResponseTime: 5000
-  - name: Identity
-    url: https://auth.mintydev.gay/realms/mintydev/.well-known/openid-configuration
-    expectedStatusCodes: [200]
-    maxResponseTime: 5000
-  - name: Webmail
-    url: https://webmail.mintydev.gay
-    expectedStatusCodes: [200, 302]
-    maxResponseTime: 5000
-  - name: Mail administration
-    url: https://mail.mintydev.gay
-    expectedStatusCodes: [200, 302]
-    maxResponseTime: 5000
-  - name: Mail submission
-    check: tcp-ping
-    url: mail.mintydev.gay
-    port: 587
-  - name: Mail inbox
-    check: tcp-ping
-    url: mail.mintydev.gay
-    port: 993
-  - name: Metrics
-    url: https://prometheus.mintydev.gay
-    expectedStatusCodes: [200, 302]
-    maxResponseTime: 5000
-  - name: Logs and dashboards
-    url: https://grafana.mintydev.gay
-    expectedStatusCodes: [200, 302]
-    maxResponseTime: 5000
-  - name: Alerts
-    url: https://alertmanager.mintydev.gay
-    expectedStatusCodes: [200, 302]
-    maxResponseTime: 5000
+    maxResponseTime: 10000
 
 assignees:
   - BettridgeKameron
@@ -57,12 +17,15 @@ skipTopicsUpdate: true
 skipHomepageUpdate: true
 
 status-website:
+  baseUrl: /minty-status
   theme: night
-  name: Mintydev status
-  introTitle: Mintydev service status
-  introMessage: Current uptime and response times for public Mintydev services.
+  name: Mintydev fallback status
+  introTitle: Mintydev external fallback
+  introMessage: GitHub checks whether the primary status service is responding.
   navbar:
-    - title: Status
-      href: /
+    - title: Primary status
+      href: https://status.mintydev.gay/
+    - title: Fallback
+      href: /minty-status/
     - title: GitHub
       href: https://github.com/BettridgeKameron/minty-status
