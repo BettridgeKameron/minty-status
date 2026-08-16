@@ -4,19 +4,19 @@
     "url": "https://status.mintydev.gay/api/v1/endpoints/statuses",
     "icon": "https://icons.duckduckgo.com/ip3/status.mintydev.gay.ico",
     "slug": "primary-status-api",
-    "status": "up",
-    "uptime": "70.15%",
-    "uptimeDay": "70.15%",
-    "uptimeWeek": "70.15%",
-    "uptimeMonth": "70.15%",
-    "uptimeYear": "70.15%",
-    "time": 0,
-    "timeDay": 0,
-    "timeWeek": 0,
-    "timeMonth": 0,
-    "timeYear": 0,
+    "status": "down",
+    "uptime": "9.42%",
+    "uptimeDay": "9.42%",
+    "uptimeWeek": "9.42%",
+    "uptimeMonth": "9.42%",
+    "uptimeYear": "9.42%",
+    "time": 783,
+    "timeDay": 783,
+    "timeWeek": 783,
+    "timeMonth": 783,
+    "timeYear": 783,
     "dailyMinutesDown": {
-      "2026-08-16": 0
+      "2026-08-16": 2
     }
   }
 ]
